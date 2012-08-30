@@ -1,7 +1,0 @@
-#!/bin/sh
-
-export PYTHONPATH=$AUTOM/bin/scripts/pymon:$AUTOM/lib/i486-linux/libddxpy:$PYTHONPATH
-export PATH=$AUTOM/bin/scripts/pymon:$PATH
-
-exec pymon.py $*
-

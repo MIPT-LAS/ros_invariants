@@ -1,5 +1,5 @@
 #!/usr/bin/python
-import roslib; roslib.load_manifest('invariants')
+import roslib; roslib.load_manifest('ros_invariants')
 import rospy
 
 import sys
