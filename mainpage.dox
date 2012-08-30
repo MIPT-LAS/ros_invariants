@@ -1,0 +1,49 @@
+/**
+\mainpage
+\htmlinclude manifest.html
+
+\b invariants is a package to system invariants expressed as boolean
+equations on ros variables. Equations can look like the following:
+
+<ul>
+<li> robot_state.voltage > 11.5 </li>
+<li> len(joy.axes) > 3 </li>
+<li> scan.num_points > extracted_lines.lines.size() </li>
+<li> freq(robot_state) > 5 </li>
+</ul>
+
+Anything that can expressed as a python boolean expression can be used as an
+invariant. Invariants are expressed in a conf file, with one line per
+invariant. The configuration file can also include other conf files. Check the
+script directory for examples. 
+
+The invariant monitoring is started by running the pymon.py executable:
+
+<pre> rosrun invariants pymon.py /path/to/invariant.conf </pre> 
+
+or 
+
+<pre> rosrun invariants pymon.py -g /path/to/invariant.conf </pre> 
+
+The -g option starts a GUI display of the invariant status. 
+
+A topic ~status is published, describing which invariants were successfully
+checked, and which failed.
+
+A test_publisher node and a test.conf file in the test directory are provided 
+to test the invariant checking system.
+
+<!--
+\section codeapi Code API
+Provide links to specific auto-generated API documentation within your
+package that is of particular interest to a reader. Doxygen will
+document pretty much every part of your code, so do your best here to
+point the reader to the actual API.
+
+If your codebase is fairly large or has different sets of APIs, you
+should use the doxygen 'group' tag to keep these APIs together. For
+example, the roscpp documentation has 'libros' group.
+-->
+
+
+*/
