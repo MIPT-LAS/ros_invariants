@@ -4,10 +4,10 @@ ros_invariants
 Ros tools to monitor system invariants
 
 Run in text mode:
-rosrun ros_invariants pymon.py <invariants.conf>
+rosrun ros_invariants pymon.py &lt;invariants.conf&gt;
 
 Start the GUI
-rosrun ros_invariants pymon.py -g <invariants.conf>
+rosrun ros_invariants pymon.py -g &lt;invariants.conf&gt;
 
 Invariants are any one-line equations that can be evaluated as boolean by
 python, without any affectation. Variables referring to topic names are
