@@ -1,22 +1,11 @@
 #!/usr/bin/env python
-'''
-======================================================================
-    LimnoROS Project: B O A T S I M U L A T O R.py
-    ----------------------------------------------
-
-    Serves as debugging node. Simulates the boats behavior on the 
-    water. Reads Propulsion messages and outputs the boats pose.
-
-    Author:        Gregory Hitz        (hitzg@ethz.ch)
-======================================================================
-'''
 
 # ====================================================================
 #     Imports !
 # ====================================================================  
 
 # ROS specific imports
-import roslib; roslib.load_manifest('invariants')
+import roslib; roslib.load_manifest('ros_invariants')
 import rospy
 import geometry_msgs.msg
 import math

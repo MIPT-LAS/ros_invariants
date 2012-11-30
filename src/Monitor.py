@@ -1,9 +1,9 @@
-import roslib; roslib.load_manifest('invariants')
+import roslib; roslib.load_manifest('ros_invariants')
 import rospy
 
 from CondVariable import *
 from Condition import *
-from invariants.msg import *
+from ros_invariants.msg import *
 
 class Monitor:
     conditions=[]
