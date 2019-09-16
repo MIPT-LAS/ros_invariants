@@ -5,7 +5,8 @@
 # ====================================================================  
 
 # ROS specific imports
-import roslib; roslib.load_manifest('ros_invariants')
+import roslib; 
+# roslib.load_manifest('ros_invariants')
 import rospy
 import geometry_msgs.msg
 import math
@@ -20,8 +21,8 @@ def SimulatorLoop():
     # Initialize ROS stuff (Node, Publisher and Subscriber)
     rospy.init_node('test_publisher')
 
-    pub1 = rospy.Publisher("topic1", geometry_msgs.msg.PointStamped)
-    pub2 = rospy.Publisher("topic2", geometry_msgs.msg.PointStamped)
+    pub1 = rospy.Publisher("topic1", geometry_msgs.msg.PointStamped,queue_size=1)
+    pub2 = rospy.Publisher("topic2", geometry_msgs.msg.PointStamped,queue_size=1)
    
     rosrate = rospy.Rate(10) # in Hz
 

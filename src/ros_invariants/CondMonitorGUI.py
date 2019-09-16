@@ -11,7 +11,7 @@ class CondMonitorGUI(wx.Frame):
         self.app = app
         # begin wxGlade: CondMonitorGUI.__init__
         #kwds["style"] = wx.ICONIZE|wx.CAPTION|wx.MINIMIZE|wx.CLOSE_BOX|wx.MINIMIZE_BOX|wx.MAXIMIZE|wx.MAXIMIZE_BOX|wx.SYSTEM_MENU|wx.RESIZE_BORDER
-        wx.Frame.__init__(self, parent,wx.ID_ANY,"Invariant Monitor")
+        wx.Frame.__init__(self, parent,wx.ID_ANY,title="Invariant Monitor", size=(800, 600))
         self.pause = wx.Button(self, -1, "Pause")
         if self.app.reorder:
             self.reorder = wx.Button(self, -1, "Keep in place")
@@ -37,7 +37,7 @@ class CondMonitorGUI(wx.Frame):
 
         self.update_grid()
         self.conditions.Fit()
-        self.Fit()
+        # self.Fit()
 
         self.Bind(wx.EVT_BUTTON, self.reorder_hdler, self.reorder)
         self.Bind(wx.EVT_BUTTON, self.pause_hdler, self.pause)
@@ -48,7 +48,7 @@ class CondMonitorGUI(wx.Frame):
 
     def __set_properties(self):
         # begin wxGlade: CondMonitorGUI.__set_properties
-        #self.SetTitle("Condition Monitor")
+        self.SetTitle("Condition Monitor")
         self.SetSize((714, 471))
         # end wxGlade
         pass
@@ -62,11 +62,10 @@ class CondMonitorGUI(wx.Frame):
         self.sizer_5.Add(self.quit)
         self.sizer_4.Add(self.sizer_5)
         self.sizer_4.Add(self.conditions)
-        self.sizer_4.Add(self.wheel,-1,wx.CENTER | wx.ALIGN_CENTER_VERTICAL |
-                wx.EXPAND)
+        self.sizer_4.Add(self.wheel,-1,wx.CENTER | wx.ALIGN_CENTER_VERTICAL | wx.EXPAND)
 
         self.SetSizer(self.sizer_4)
-        #self.SetAutoLayout(True)
+        self.SetAutoLayout(True)
         self.Layout()
         # end wxGlade
         pass
@@ -117,11 +116,13 @@ class CondMonitorGUI(wx.Frame):
                 if len(c['comment'])>0:
                     self.conditions.SetCellValue(index,0,c['comment'])
                     self.conditions.SetCellTextColour(index,0,"BLUE")
+                    self.conditions.SetCellAlignment(index,0,wx.ALIGN_LEFT,wx.ALIGN_CENTRE)
                     self.conditions.SetCellValue(index,1,"")
                     self.conditions.SetCellBackgroundColour(index,1,"WHITE")
                     index += 1
                 self.conditions.SetCellValue(index,0,c['condition'])
                 self.conditions.SetCellTextColour(index,0,"BLACK")
+                self.conditions.SetCellAlignment(index,0,wx.ALIGN_LEFT,wx.ALIGN_CENTRE)
                 self.conditions.SetCellValue(index,1,"FAIL")
                 self.conditions.SetCellBackgroundColour(index,1,"RED")
                 self.conditions.SetCellAlignment(index,1,wx.ALIGN_CENTRE,wx.ALIGN_CENTRE)
@@ -130,11 +131,13 @@ class CondMonitorGUI(wx.Frame):
                 if len(c['comment'])>0:
                     self.conditions.SetCellValue(index,0,c['comment'])
                     self.conditions.SetCellTextColour(index,0,"BLUE")
+                    self.conditions.SetCellAlignment(index,0,wx.ALIGN_LEFT,wx.ALIGN_CENTRE)
                     self.conditions.SetCellValue(index,1,"")
                     self.conditions.SetCellBackgroundColour(index,1,"WHITE")
                     index += 1
                 self.conditions.SetCellValue(index,0,c['condition'])
                 self.conditions.SetCellTextColour(index,0,"BLACK")
+                self.conditions.SetCellAlignment(index,0,wx.ALIGN_LEFT,wx.ALIGN_CENTRE)
                 self.conditions.SetCellValue(index,1,"OK")
                 self.conditions.SetCellBackgroundColour(index,1,"GREEN")
                 self.conditions.SetCellAlignment(index,1,wx.ALIGN_CENTRE,wx.ALIGN_CENTRE)
@@ -147,12 +150,14 @@ class CondMonitorGUI(wx.Frame):
                     c = R['error'][x['index']]
                 if len(c['comment'])>0:
                     self.conditions.SetCellValue(index,0,c['comment'])
+                    self.conditions.SetCellAlignment(index,0,wx.ALIGN_LEFT,wx.ALIGN_CENTRE)
                     self.conditions.SetCellTextColour(index,0,"BLUE")
                     self.conditions.SetCellValue(index,1,"")
                     self.conditions.SetCellBackgroundColour(index,1,"WHITE")
                     index += 1
                 self.conditions.SetCellValue(index,0,c['condition'])
                 self.conditions.SetCellTextColour(index,0,"BLACK")
+                self.conditions.SetCellAlignment(index,0,wx.ALIGN_LEFT,wx.ALIGN_CENTRE)
                 if x['success']:
                     self.conditions.SetCellValue(index,1,"OK")
                     self.conditions.SetCellBackgroundColour(index,1,"GREEN")
@@ -168,6 +173,7 @@ class CondMonitorGUI(wx.Frame):
         #self.wheel.SetLabel(self.wsymbols[0:self.windex]+"|"+self.wsymbols[self.windex+2:])
         self.windex = (self.windex + 1) % (self.wheel.GetRange()+1)
         self.wheel.SetValue(self.windex)
+        self.Layout()
 
 
 

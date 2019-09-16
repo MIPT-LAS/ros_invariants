@@ -1,5 +1,6 @@
 #!/usr/bin/python
-import roslib; roslib.load_manifest('ros_invariants')
+#import roslib; 
+# roslib.load_manifest('ros_invariants')
 import rospy
 
 import sys
@@ -8,7 +9,7 @@ import time
 import getopt
 from math import *
 
-from Monitor import *
+from ros_invariants.Monitor import *
 
 ###### Option parsing ###################
 
@@ -18,15 +19,16 @@ def printhelp():
     print "-g,--gui    : load the gui"
     print "-r,--reorder: reorder statements to show fail on top"
     print "-h,--help   : print this message"
+    print "Alternatively, all the arguments can be set through ROS params"
     sys.exit(1)
 
-if (len(sys.argv) < 2):
-    printhelp()
+# if (len(sys.argv) < 2):
+#     printhelp()
 
 opts,args=getopt.getopt(sys.argv[1:],"pgrh",["protect","gui","reorder","help"])
 
-if (len(args) != 1):
-    printhelp()
+# if (len(args) != 1):
+#     printhelp()
 
 textonly=True
 protect=True
@@ -42,10 +44,24 @@ for o,a in opts:
     if o == "-h":
         printhelp()
 
+
 #######################################################3333###
 
 rospy.init_node("invariants")
-pub = rospy.Publisher("~status",InvariantStatus)
+textonly = rospy.get_param("~textonly",textonly)
+reorder = rospy.get_param("~reorder",reorder)
+protect = rospy.get_param("~protect",protect)
+condfile = rospy.get_param("~conditions","")
+
+if len(condfile)>0:
+    args=[condfile]
+
+if len(args) != 1:
+    rospy.logerr("Error: config file not defined")
+    printhelp()
+
+
+pub = rospy.Publisher("~status",InvariantStatus,queue_size=1)
 monitor = Monitor(pub)
 if protect:
     try:
@@ -81,7 +97,7 @@ if textonly:
     except Exception,inst:
         rospy.loginfo("Monitor interrupted: " + str(inst))
 else:
-    from CondMonitorGUI import *
+    from ros_invariants.CondMonitorGUI import *
     #print "starting GUI"
     MonitorGUI = MonitorGUIMain(monitor,reorder,0)
     MonitorGUI.MainLoop()

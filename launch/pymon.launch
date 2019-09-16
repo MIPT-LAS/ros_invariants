@@ -1,0 +1,16 @@
+<launch>
+    <node pkg="ros_invariants" type="test_publisher.py" name="test_publisher">
+    </node>
+
+    <node pkg="ros_invariants" type="pymon.py" name="pymon">
+        <param name="conditions" value="$(find ros_invariants)/test/test.conf"/>
+        <!-- Set to true to disable the text interface -->
+        <param name="textonly" value="False"/>
+        <!-- Set to true to enable error reordering to keep the problem on top -->
+        <param name="reorder" value="False"/>
+        <!-- Set to False to disable the exception handling (debug) -->
+        <param name="protect" value="True"/>
+    </node>
+
+</launch>
+

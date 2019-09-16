@@ -1,4 +1,4 @@
-import roslib; roslib.load_manifest('ros_invariants')
+# import roslib; roslib.load_manifest('ros_invariants')
 import rospy
 
 from CondVariable import *

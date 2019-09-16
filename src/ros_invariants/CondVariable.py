@@ -1,4 +1,4 @@
-import roslib; roslib.load_manifest('ros_invariants')
+# import roslib; roslib.load_manifest('ros_invariants')
 import rospy
 import rostopic
 
@@ -8,7 +8,7 @@ class ConditionVariable:
         if name[0] != "/":
             name = "/" + name
         msg_class, real_topic, _ = rostopic.get_topic_class(name, blocking=True) #pause hz until topic is published
-        self.sub = rospy.Subscriber(real_topic,msg_class,self.valuecb)
+        self.sub = rospy.Subscriber(real_topic,msg_class,self.valuecb,queue_size=1)
         self.var = None
         self.count = 0
         self.lastcount = 0
