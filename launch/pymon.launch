@@ -9,7 +9,7 @@
         <!-- Set to true to enable error reordering to keep the problem on top -->
         <param name="reorder" value="False"/>
         <!-- Set to False to disable the exception handling (debug) -->
-        <param name="protect" value="True"/>
+        <param name="protect" value="False"/>
     </node>
 
 </launch>

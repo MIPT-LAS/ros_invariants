@@ -22,7 +22,7 @@ class Condition:
         vars = set()
         # this matches a word starting by a letter, not preceded by a letter,
         # a dot or a square bracket, and followed by letter or number
-        potvar = re.findall('(?<![.\]a-zA-Z0-9_])[a-zA-Z][a-zA-Z0-9_]*',self.text)
+        potvar = re.findall('(?<![.\]a-zA-Z0-9_])[a-zA-Z][a-zA-Z0-9_/]*',self.text)
         #print "predef: " + str(predef)
         #print "potvar: " + str(potvar)
         for v in potvar:
@@ -37,8 +37,8 @@ class Condition:
     def createEvalText(self,vars):
         self.etext = self.text
         for v in vars:
-            self.etext = re.sub("(?<![.\]a-zA-Z0-9_])%s"%v,"rosvar['%s'].var"%v,self.etext)
-            self.etext = re.sub("(freq\(rosvar\['[A-Za-z0-9_]*'\]).var\)",r"\1)",self.etext)
+            self.etext = re.sub("(?<![.\]a-zA-Z0-9_/])%s"%v,"rosvar['%s'].var"%v,self.etext)
+            self.etext = re.sub("(freq\(rosvar\['[A-Za-z0-9_/]*'\]).var\)",r"\1)",self.etext)
 
     def evaluate(self,rosvar):
         #print "Evaluating " + self.etext

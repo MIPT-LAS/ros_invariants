@@ -99,6 +99,7 @@ if textonly:
 else:
     from ros_invariants.CondMonitorGUI import *
     #print "starting GUI"
+    sys.stderr=open("/dev/null","w")
     MonitorGUI = MonitorGUIMain(monitor,reorder,0)
     MonitorGUI.MainLoop()
 

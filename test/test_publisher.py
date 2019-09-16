@@ -22,7 +22,7 @@ def SimulatorLoop():
     rospy.init_node('test_publisher')
 
     pub1 = rospy.Publisher("topic1", geometry_msgs.msg.PointStamped,queue_size=1)
-    pub2 = rospy.Publisher("topic2", geometry_msgs.msg.PointStamped,queue_size=1)
+    pub2 = rospy.Publisher("topic2/point", geometry_msgs.msg.PointStamped,queue_size=1)
    
     rosrate = rospy.Rate(10) # in Hz
 
